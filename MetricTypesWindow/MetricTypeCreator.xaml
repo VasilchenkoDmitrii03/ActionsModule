@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:MetricTypesWindow"
         xmlns:c ="clr-namespace:MetricTypesWindow.Converters"
         mc:Ignorable="d"
-        Title="MetricTypeCreator" Height="450" Width="800">
+        Title="MetricTypeCreator" Height="200" Width="400" MaxWidth="400" MinWidth="400" MaxHeight="200" MinHeight="200" >
     <Window.Resources>
         <c:MyConverter x:Key="MyConverter"></c:MyConverter>
     </Window.Resources>
@@ -20,7 +20,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Grid.Row="0"> Metric type name: </Label>
             <Label Grid.Column="0" Grid.Row="1">Metric type description:</Label>
@@ -36,11 +36,11 @@
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>
-                <ColumnDefinition Width="*"></ColumnDefinition>
+
             </Grid.ColumnDefinitions>
-            <Label>options separated by commas</Label>
+            <Label>Options between commas</Label>
             <TextBox Name="OptionsTextBox" Grid.Column="1" Text="{Binding Dict, Converter={StaticResource MyConverter} }"></TextBox>
         </Grid>
         <Button Click="Button_Click">OK</Button>

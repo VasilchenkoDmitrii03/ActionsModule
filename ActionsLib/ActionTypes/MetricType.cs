@@ -149,7 +149,7 @@ namespace ActionsLib
 
         public override string ToString()
         {
-            string res = _name + " " + _description;
+            string res = _name + ": " + _description;
             return res;
         }
 

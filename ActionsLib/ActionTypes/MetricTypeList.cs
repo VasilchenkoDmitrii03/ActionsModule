@@ -64,6 +64,16 @@ namespace ActionsLib
                 throw new Exception($"Metric types list {_name} does not contains metric type {metricType.Name}");
             }
         }
+        public void Clear()
+        {
+            _metricTypes.Clear();
+        }
+        public MetricTypeList Copy()
+        {
+            MetricTypeList res = new MetricTypeList(this._name);
+            res.Add(this._metricTypes.ToArray());
+            return res;
+        }
 
         public void Save(string filename)
         {
@@ -94,5 +104,6 @@ namespace ActionsLib
             }
             return res;
         }
+        
     }
 }

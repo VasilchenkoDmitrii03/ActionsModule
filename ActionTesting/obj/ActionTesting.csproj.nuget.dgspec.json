@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionTesting\\ActionTesting.csproj": {}
+    "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionTesting\\ActionTesting.csproj": {}
   },
   "projects": {
-    "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionsLib\\ActionsLib.csproj": {
+    "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionsLib\\ActionsLib.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionsLib\\ActionsLib.csproj",
+        "projectUniqueName": "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionsLib\\ActionsLib.csproj",
         "projectName": "ActionsLib",
-        "projectPath": "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionsLib\\ActionsLib.csproj",
-        "packagesPath": "C:\\Users\\demosfenn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionsLib\\obj\\",
+        "projectPath": "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionsLib\\ActionsLib.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionsLib\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\demosfenn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -74,17 +78,21 @@
         }
       }
     },
-    "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionTesting\\ActionTesting.csproj": {
+    "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionTesting\\ActionTesting.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionTesting\\ActionTesting.csproj",
+        "projectUniqueName": "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionTesting\\ActionTesting.csproj",
         "projectName": "ActionTesting",
-        "projectPath": "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionTesting\\ActionTesting.csproj",
-        "packagesPath": "C:\\Users\\demosfenn\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionTesting\\obj\\",
+        "projectPath": "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionTesting\\ActionTesting.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionTesting\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\demosfenn\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -98,8 +106,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionsLib\\ActionsLib.csproj": {
-                "projectPath": "C:\\Users\\demosfenn\\source\\repos\\ActionsLibrary\\ActionsLib\\ActionsLib.csproj"
+              "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionsLib\\ActionsLib.csproj": {
+                "projectPath": "C:\\Dmitrii\\Programming\\VolleyStat2.0\\ActionsModule\\ActionsLib\\ActionsLib.csproj"
               }
             }
           }

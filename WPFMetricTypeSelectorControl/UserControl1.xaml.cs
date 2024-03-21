@@ -18,8 +18,11 @@ namespace WPFMetricTypeSelectorControl
     /// <summary>
     /// Interaction logic for UserControl1.xaml
     /// </summary>
+    /// 
+    public delegate void CheckBoxUpdated();
     public partial class MetricTypeSelector : UserControl, INotifyPropertyChanged
     {
+        public event CheckBoxUpdated OnCheckBoxUpdated;
         public MetricTypeList _totalList { get; set; }
         public MetricTypeList _displayedList { get; set; }
         public MetricTypeList _selectedList { get; set; }
@@ -36,26 +39,14 @@ namespace WPFMetricTypeSelectorControl
 
         public void StackPanelUpdate()
         {
-            _checkBoxes.Clear();
             Items.Children.Clear();
             int ind = 0;
-            foreach (MetricType tmp in _displayedList)
+            foreach(CheckBox checkBox in _checkBoxes)
             {
-                CheckBox chbox = new CheckBox() { Content = tmp.ToString(), IsChecked = false };
-                chbox.Checked += (o, e) => { 
-                    if(((CheckBox)o).IsChecked == true)
-                    {
-                        _selectedList.Add(tmp);
-                    }
-                    else
-                    {
-                        _selectedList.Remove(tmp);
-                    }
-                    OnPropertyChanged("_selectedList");
-                };
-                _checkBoxes.Add(chbox);
-                Items.Children.Add(chbox);
-
+                if (DisplayedContains(checkBox))
+                {
+                    Items.Children.Add(checkBox);
+                }
             }
         }
 
@@ -86,6 +77,66 @@ namespace WPFMetricTypeSelectorControl
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
+        public void updateTotalList(MetricTypeList lst)
+        {
+            _totalList = lst;
+            foreach(MetricType tmp in _totalList)
+            {
+                CheckBox chbox = new CheckBox() { Content = tmp.ToString(), IsChecked = false };
+                chbox.Checked += (o, e) => {
+                    rebuildSelected();
+                    OnPropertyChanged("_selectedList");
+                    OnCheckBoxUpdated();
+                };
+                chbox.Unchecked+= (o, e) => {
+                    rebuildSelected();
+                    OnPropertyChanged("_selectedList");
+                    OnCheckBoxUpdated();
+                };
+                _checkBoxes.Add(chbox);
+            }
+
+        
+    }
+        private void rebuildSelected()
+        {
+            _selectedList.Clear();
+            for(int i= 0;i < _checkBoxes.Count;i++)
+            {
+                if (_checkBoxes[i].IsChecked == true)
+                {
+                    _selectedList.Add(_totalList[i]);
+                }
+            }
+        }
+        private bool DisplayedContains(CheckBox chbox)
+        {
+            foreach(MetricType mt in _displayedList)
+            {
+                if (mt.ToString() == (string)chbox.Content) return true;
+            }
+            return false;
+        }
+        private bool ListContains(CheckBox chbox, MetricTypeList mtl)
+        {
+            foreach (MetricType mt in mtl)
+            {
+                if (mt.ToString() == (string)chbox.Content) return true;
+            }
+            return false;
+        }
+        public  void updateSelected(MetricTypeList mtl)
+        {
+            _selectedList.Clear();
+            foreach (CheckBox c in _checkBoxes) c.IsChecked = false;
+            foreach(CheckBox c in _checkBoxes)
+            {
+                if (ListContains(c, mtl))
+                {
+                    c.IsChecked = true;
+                }
+            }
         }
     }
 

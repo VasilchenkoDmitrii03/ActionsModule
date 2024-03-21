@@ -10,29 +10,64 @@ using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ActionsLib;
+using ActionsLib.ActionTypes;
+using Microsoft.Win32;
 using WPFMetricTypeSelectorControl;
 namespace MetricTypesWindow
 {
    
     public partial class MainWindow : Window
     {
-        ViewModel _data;
-        MetricTypeList lst { get; set; }
+        ActionsMetricTypes _data;
         public MainWindow()
         {
-            _data = new ViewModel();
             InitializeComponent();
-            SelectedMetricTypes._totalList.Add(IntegerMetricType.createIntegerMetricType("position", "position on the playground", new int[] { 1, 2, 3, 4, 5, 6 }, new string[] { "1", "2", "3", "4", "5", "6" }));
-            SelectedMetricTypes._totalList.Add(IntegerMetricType.createIntegerMetricType("quality", "quality of any action from 1-6", new int[] { 1, 2, 3, 4, 5, 6 }, new string[] { "=", "-", "/", "!", "+", "#" }));
-            SelectedMetricTypes.StackPanelUpdate();
-            lst = SelectedMetricTypes._selectedList;
-            this.DataContext = SelectedMetricTypes;
+            _data = new ActionsMetricTypes("tmp");
+            this.ActionTypeCombobox.ItemsSource = _data.Keys;
+            this.AvaibleMetricsSelector.OnCheckBoxUpdated += CheckBoxUpdateEventHadler;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            tmp.ItemsSource = SelectedMetricTypes._selectedList;
-            tmp.UpdateLayout();
+        }
+
+        private void ListNew_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        private void ListOpen_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = @"Metric type list|*.metl";
+                if (ofd.ShowDialog() == true)
+                {
+                    MetricTypeList tmp = MetricTypeList.Load(ofd.FileName);
+                    this.AvaibleMetricsSelector.updateTotalList( tmp);
+                    this.ListName.Content = tmp.Name;
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+        private void CheckBoxUpdateEventHadler()
+        {
+            CurrentSelectedValues.ItemsSource = this.AvaibleMetricsSelector._selectedList;
+            CurrentSelectedValues.ItemsSource = null;
+            CurrentSelectedValues.ItemsSource = this.AvaibleMetricsSelector._selectedList;
+            updateData();
+        }
+        private void updateData()
+        {
+            _data.updateList((VolleyActionType)ActionTypeCombobox.SelectedItem, AvaibleMetricsSelector._selectedList);
+        }
+
+        private void ActionTypeCombobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            AvaibleMetricsSelector.updateSelected(_data[(VolleyActionType)ActionTypeCombobox.SelectedItem]);
         }
     }
 }

@@ -78,17 +78,28 @@ namespace MetricTypesWindow
         MetricType _editedMetricType;
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_isMetricCreaterOpened)
+            try
             {
-                MessageBox.Show("One metric editor window is opened");
-                return;
+                if (_isMetricCreaterOpened)
+                {
+                    MessageBox.Show("One metric editor window is opened");
+                    return;
+                }
+                _editedMetricType = (MetricType)CurrentMetricTypes.SelectedItem;
+                if (CurrentMetricTypes.SelectedIndex == -1)
+                {
+                    throw new Exception("No item selected");
+                }
+                MetricTypeCreator t = new MetricTypeCreator(_editedMetricType, CurrentMetricTypes.SelectedIndex);
+                t.Closed += (sender, e) => { _isMetricCreaterOpened = false; };
+                t.OnMetricTypeUpdated += MetricTypeUpdated;
+                t.Show();
+                _isMetricCreaterOpened = true;
             }
-            _editedMetricType = (MetricType)CurrentMetricTypes.SelectedItem;
-            MetricTypeCreator t = new MetricTypeCreator(_editedMetricType, CurrentMetricTypes.SelectedIndex);
-            t.Closed += (sender, e) => { _isMetricCreaterOpened = false; };
-            t.OnMetricTypeUpdated += MetricTypeUpdated;
-            t.Show();
-            _isMetricCreaterOpened = true;
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {

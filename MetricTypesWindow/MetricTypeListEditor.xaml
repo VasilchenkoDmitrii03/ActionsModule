@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MetricTypesWindow"
         mc:Ignorable="d"
-        Title="MetricTypeListEditor" Height="450" Width="800">
+        Title="MetricTypeListEditor" Height="450" Width="800" MaxWidth="800" MinHeight="400" MaxHeight="400" MinWidth="800">
     <StackPanel>
         <Menu>
             <MenuItem Header="File">
@@ -17,20 +17,20 @@
         </Menu>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="125"> </ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="400"> </ColumnDefinition>
+                <ColumnDefinition Width="400"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="25"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="340"></RowDefinition>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0">Name:</Label>
-            <ListBox Name="CurrentMetricTypes" Grid.Row="1" Grid.Column="0" MinHeight="150" ItemsSource="{Binding ListMetricTypes}" ></ListBox>
+            <ListBox Name="CurrentMetricTypes" Grid.Row="1" Grid.Column="0" MinHeight="150" ScrollViewer.VerticalScrollBarVisibility="Visible" ItemsSource="{Binding ListMetricTypes}" ></ListBox>
             <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding ListName}"></TextBox>
-            <StackPanel Grid.Row="1" Grid.Column="1">
-                <Button Click="AddButton_Click">Add new</Button>
-                <Button Click="EditButton_Click">Edit selected</Button>
-                <Button Click="RemoveButton_Click">Remove selected</Button>
+            <StackPanel Grid.Row="1" Grid.Column="1" Width="400">
+                <Button Height="50" Click="AddButton_Click">Add new</Button>
+                <Button Height="50" Click="EditButton_Click">Edit selected</Button>
+                <Button Height="50" Click="RemoveButton_Click">Remove selected</Button>
             </StackPanel>
         </Grid>
     </StackPanel>
